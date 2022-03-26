@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/list-user', 'UserController@index')->name('user.list.index');
+Route::group(['prefix' => '/users'], function () {
+    Route::get('/{id}', 'ProfileController@show')->name('user.profile.show');
+    Route::get('/{id}/comments', 'CommentController@show')->name('user.comment.show');
+});
