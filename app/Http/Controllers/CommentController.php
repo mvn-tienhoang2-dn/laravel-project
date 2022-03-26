@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CommentController extends Controller
 {
@@ -44,9 +46,11 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show($id)
     {
-        //
+        $user = DB::table('users')->where('id', $id)->first();
+        $data = DB::table('comments')->where('user_id', $id)->get();
+        return view('client.pages.comment', compact('data', 'user'));
     }
 
     /**
