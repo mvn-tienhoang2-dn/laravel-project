@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -44,9 +45,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $user = DB::table('users')->where('id', $id)->first();
+        $posts = DB::table('posts')->where('user_id', $id)->get();
+        // dd($posts);
+        return view('client.pages.all_post_user', compact('posts', 'user'));
     }
 
     /**

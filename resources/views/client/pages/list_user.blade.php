@@ -23,7 +23,7 @@
             @foreach ($data as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $value->name }}</td>
+                    <td><a href="{{ route('user.post.show', $value->id) }}">{{ $value->name }}</a></td>
                     <td>{{ $value->email }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->status }}</td>
