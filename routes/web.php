@@ -21,3 +21,7 @@ Route::group(['prefix' => '/users'], function () {
     Route::get('/{id}', 'ProfileController@show')->name('user.profile.show');
     Route::get('/{id}/comments', 'CommentController@show')->name('user.comment.show');
 });
+Route::group(['prefix' => '/comments'], function () {
+    Route::get('/', 'CommentController@index')->name('user.comment.index');
+    Route::get('/{id}/users', 'CommentController@detail')->name('user.comment.detail');
+});

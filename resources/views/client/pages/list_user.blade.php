@@ -4,6 +4,10 @@
 @endsection
 
 @section('content')
+    <div class="row text-wrap">
+        <a href="{{ route('user.comment.index') }}" class="  btn btn-primary col-md-2" style="margin-right: 50px">Show List
+            Comment</a>
+    </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

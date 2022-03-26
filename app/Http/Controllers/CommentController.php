@@ -16,7 +16,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = DB::table('comments')->get();
+        return view('client.pages.list_comment', compact('comments'));
     }
 
     /**
@@ -85,5 +86,10 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+    public function detail($id)
+    {
+        $user = DB::table('users')->where('id', $id)->first();
+        return view('client.pages.info_user', compact('user'));
     }
 }
