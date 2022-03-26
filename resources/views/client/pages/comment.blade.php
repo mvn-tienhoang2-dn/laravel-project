@@ -19,7 +19,7 @@
                     <td>{{ $value->content }}</td>
                     <td>{{ $value->post_id }}</td>
                     <td>
-                        <a class="btn btn-info">Show User</a>
+                        <a href="{{ route('user.profile.show', $value->user_id) }}" class="btn btn-info">Show User</a>
                     </td>
                 </tr>
             @endforeach

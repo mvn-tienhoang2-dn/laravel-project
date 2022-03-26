@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -44,9 +45,13 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show($id)
     {
-        //
+        $user = DB::table('users')->where('id', $id)->first();
+        $profile = DB::table('profiles')->where('user_id',  $id)->first();
+        $posts = DB::table('posts')->where('user_id',  $id)->get();
+        $comments = DB::table('comments')->where('user_id', $id)->get();
+        return view('client.pages.profile', compact('comments', 'posts', 'profile', 'user'));
     }
 
     /**
