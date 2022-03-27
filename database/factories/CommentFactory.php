@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -13,10 +15,12 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $userIds = User::pluck('id');
+        $postIds = Post::pluck('id');
         return [
             'content' => $this->faker->sentence(),
-            'post_id' => rand(1, 10),
-            'user_id' => rand(1, 10),
+            'post_id' => $this->faker->randomElement($postIds),
+            'user_id' => $this->faker->randomElement($userIds),
         ];
     }
 }

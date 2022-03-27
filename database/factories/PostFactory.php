@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -13,9 +14,10 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $userIds = User::pluck('id');
         return [
             'content' => $this->faker->text(200),
-            'user_id' => rand(1, 10),
+            'user_id' => $this->faker->randomElement($userIds),
         ];
     }
 }

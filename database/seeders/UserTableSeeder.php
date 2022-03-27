@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Profile;
 
 class UserTableSeeder extends Seeder
 {
@@ -16,6 +17,9 @@ class UserTableSeeder extends Seeder
     {
         User::factory()
             ->count(10)
+            ->hasProfile(1)
+            ->hasPosts(2)
+            ->hasComments(4)
             ->create();
     }
 }

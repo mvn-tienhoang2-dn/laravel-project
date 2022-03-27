@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->string('address');
             $table->string('tel');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->references('id')->on('users');
             $table->string('province');
             $table->timestamps();
         });
