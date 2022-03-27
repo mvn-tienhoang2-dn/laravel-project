@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/list-user', 'UserController@index')->name('user.list.index');
+Route::get('/create-user', 'UserController@view')->name('user.create.view');
+Route::post('/create-user', 'UserController@store')->name('user.create.store');
 Route::group(['prefix' => '/users'], function () {
     Route::get('/{id}', 'ProfileController@show')->name('user.profile.show');
     Route::get('/{id}/comments', 'CommentController@show')->name('user.comment.show');

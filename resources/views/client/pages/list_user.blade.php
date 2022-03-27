@@ -5,6 +5,8 @@
 
 @section('content')
     <div class="row text-wrap">
+        <a href="{{ route('user.create.view') }}" class="  btn btn-primary col-md-2" style="margin-right: 50px">Add
+            user</a>
         <a href="{{ route('user.comment.index') }}" class="  btn btn-primary col-md-2" style="margin-right: 50px">Show List
             Comment</a>
     </div>
