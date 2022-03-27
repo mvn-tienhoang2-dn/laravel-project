@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,10 +48,10 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
-        $profile = DB::table('profiles')->where('user_id',  $id)->first();
-        $posts = DB::table('posts')->where('user_id',  $id)->get();
-        $comments = DB::table('comments')->where('user_id', $id)->get();
+        $user = User::find($id)->first();
+        $profile = $user->profile;
+        $posts = $user->posts;
+        $comments = $user->comments;
         return view('client.pages.profile', compact('comments', 'posts', 'profile', 'user'));
     }
 

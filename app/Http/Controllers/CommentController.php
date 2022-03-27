@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = DB::table('comments')->get();
+        $comments = Comment::all();
         return view('client.pages.list_comment', compact('comments'));
     }
 
@@ -49,9 +50,9 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
-        $data = DB::table('comments')->where('user_id', $id)->get();
-        return view('client.pages.comment', compact('data', 'user'));
+        $user = User::find($id)->first();
+        $comments = $user->comments;
+        return view('client.pages.comment', compact('comments', 'user'));
     }
 
     /**
@@ -89,7 +90,7 @@ class CommentController extends Controller
     }
     public function detail($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
+        $user = User::find($id);
         return view('client.pages.info_user', compact('user'));
     }
 }

@@ -13,9 +13,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $key => $value)
+            @foreach ($comments as $comment => $value)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $comment + 1 }}</td>
                     <td>{{ $value->content }}</td>
                     <td>{{ $value->post_id }}</td>
                     <td>

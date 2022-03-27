@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,8 +48,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('users')->where('id', $id)->first();
-        $posts = DB::table('posts')->where('user_id', $id)->get();
+        $user = User::find($id)->first();
+        $posts = $user->posts;
         // dd($posts);
         return view('client.pages.all_post_user', compact('posts', 'user'));
     }
