@@ -11,7 +11,9 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-        return view('client.pages.list_user', compact('data'));
+        $user_posts = User::with('posts')->get();
+        $user_comments = User::with('comments')->get();
+        return view('client.pages.list_user', compact('data', 'user_posts', 'user_comments'));
     }
     public function view()
     {
