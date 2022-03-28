@@ -48,10 +48,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id)->first();
-        $posts = $user->posts;
-        // dd($posts);
-        return view('client.pages.all_post_user', compact('posts', 'user'));
+        $user_posts = User::with('posts')->find($id);
+        return view('client.pages.all_post_user', compact('user_posts'));
     }
 
     /**

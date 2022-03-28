@@ -1,6 +1,6 @@
 @extends('client.master')
 @section('title')
-    Comment Post Of User {{ $user->name }}
+    Comment Post Of User {{ $user_comments->name }}
 @endsection
 @section('content')
     <table class="table table-striped table-hover">
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($comments as $comment => $value)
+            @foreach ($user_comments->comments as $comment => $value)
                 <tr>
                     <td>{{ $comment + 1 }}</td>
                     <td>{{ $value->content }}</td>

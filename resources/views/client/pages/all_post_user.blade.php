@@ -1,6 +1,6 @@
 @extends('client.master')
 @section('title')
-    {{ ucfirst($user->name) }}'s Posts
+    {{ ucfirst($user_posts->name) }}'s Posts
 @endsection
 @section('content')
     <table class="table table-striped table-hover">
@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($posts as $key => $value)
+            @foreach ($user_posts->posts as $key => $value)
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $value->content }}</td>

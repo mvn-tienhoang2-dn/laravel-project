@@ -50,9 +50,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id)->first();
-        $comments = $user->comments;
-        return view('client.pages.comment', compact('comments', 'user'));
+        $user_comments = User::with('comments')->find($id);
+        return view('client.pages.comment', compact('user_comments'));
     }
 
     /**
