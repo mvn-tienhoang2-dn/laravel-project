@@ -16,10 +16,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::factory()
-            ->count(10)
+            ->count(30)
             ->hasProfile(1)
-            ->hasPosts(2)
-            ->hasComments(4)
+            ->hasPosts(10)
+            ->hasComments(15)
             ->create();
     }
 }

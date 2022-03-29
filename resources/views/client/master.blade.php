@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    @extends('client.shares.top')
+    @include('client.shares.top')
 </head>
+
 <body>
     <header>
-        @extends('client.shares.head')
+        @include('client.shares.head')
     </header>
     <div class="container">
         <h1 class="mt-4">
@@ -16,9 +18,10 @@
         @yield('content')
     </div>
     <footer>
-        @extends('client.shares.foot');
+        @include('client.shares.foot');
     </footer>
     @yield('js')
 </body>
-@extends('client.shares.bottom')
+@include('client.shares.bottom')
+
 </html>
