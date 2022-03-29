@@ -115,9 +115,10 @@
                             success: function(res) {
                                 var html = '';
                                 var data = res.data;
+                                var count = 1;
                                 $.each(data, function(k, v) {
                                     html += '<tr>';
-                                    html += '<td>' + (k + 1) + '</td>';
+                                    html += '<td>' + count + '</td>';
                                     html += '<td>' + v.name + '</td>';
                                     html += '<td>' + v.email + '</td>';
                                     html += '<td>' + v.created_at + '</td>';
@@ -125,6 +126,7 @@
                                     html += ' <td>' + v.posts.length + '</td>';
                                     html += ' <td>' + v.comments.length + '</td>';
                                     html += '</tr>';
+                                    count++;
                                 });
                                 $('#load-data').html(html);
                             }
@@ -149,9 +151,10 @@
                             success: function(res) {
                                 var html = '';
                                 var data = res.data;
+                                var count = 1;
                                 $.each(data, function(k, v) {
                                     html += '<tr>';
-                                    html += '<td>' + (k + 1) + '</td>';
+                                    html += '<td>' + count + '</td>';
                                     html += '<td>' + v.name + '</td>';
                                     html += '<td>' + v.email + '</td>';
                                     html += '<td>' + v.created_at + '</td>';
@@ -159,6 +162,7 @@
                                     html += ' <td>' + v.posts.length + '</td>';
                                     html += ' <td>' + v.comments.length + '</td>';
                                     html += '</tr>';
+                                    count++;
                                 });
                                 $('#load-data').html(html);
                             }
