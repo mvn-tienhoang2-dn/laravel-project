@@ -9,6 +9,8 @@
             user</a>
         <a href="{{ route('user.comment.index') }}" class="  btn btn-primary col-md-2" style="margin-right: 50px">Show List
             Comment</a>
+        <a href="{{ route('user.search.searchIndex') }}" class="  btn btn-primary col-md-2"
+            style="margin-right: 50px">Search</a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -31,24 +33,16 @@
                     <td>{{ $value->email }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->status }}</td>
-                    @foreach ($user_posts as $post_key => $post_value)
-                        @if ($post_value->id == $value->id)
-                            <td>
-                                <a href="{{ route('user.post.show', $value->id) }}">
-                                    {{ count($post_value->posts) }}
-                                </a>
-                            </td>
-                        @endif
-                    @endforeach
-                    @foreach ($user_comments as $comment_key => $comment_value)
-                        @if ($comment_value->id == $value->id)
-                            <td>
-                                <a href="{{ route('user.comment.show', $value->id) }}">
-                                    {{ count($comment_value->comments) }}
-                                </a>
-                            </td>
-                        @endif
-                    @endforeach
+                    <td>
+                        <a href="{{ route('user.post.show', $value->id) }}">
+                            {{ count($value->posts) }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('user.comment.show', $value->id) }}">
+                            {{ count($value->comments) }}
+                        </a>
+                    </td>
                     <td>
                         <a href="{{ route('user.comment.show', $value->id) }} " class="btn btn-success text-wrap">Show
                             Comment</a>
