@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,15 @@ class UserController extends Controller
     {
         return view('client.pages.add_user');
     }
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
+        if ($request->hasFile('avatar')) {
+            $newName = \Carbon\Carbon::now()->toString() . $request->file('avatar')->getClientOriginalName();
+            $path = '/image';
+            $request->file('avatar')->move(public_path($path), $newName);
+            $data['avatar'] = "$path/$newName";
+        }
         $data['age'] = date('Y', strtotime(now())) - date('Y', strtotime($data['birthday']));
         $data['password'] = bcrypt($data['password']);
         User::create($data);
