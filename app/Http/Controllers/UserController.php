@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::with('posts', 'comments')->get();
+        $data = User::with('posts', 'comments')->simplePaginate(5);
         return view('client.pages.list_user', compact('data'));
     }
     public function view()
@@ -70,5 +70,28 @@ class UserController extends Controller
             }
         }
         return response()->json(['status' => true, 'data' => $data]);
+    }
+
+    public function sortNameAsc()
+    {
+        $data = User::with('posts', 'comments')->orderBy('name')->simplePaginate(5);
+        return view('client.pages.list_user', compact('data'));
+    }
+
+    public function sortNameDesc()
+    {
+        $data = User::with('posts', 'comments')->orderByDesc('name')->simplePaginate(5);
+        return view('client.pages.list_user', compact('data'));
+    }
+
+    public function sortAgeAsc()
+    {
+        $data = User::with('posts', 'comments')->orderBy('age')->simplePaginate(5);
+        return view('client.pages.list_user', compact('data'));
+    }
+    public function sortAgeDesc()
+    {
+        $data = User::with('posts', 'comments')->orderByDesc('age')->simplePaginate(5);
+        return view('client.pages.list_user', compact('data'));
     }
 }

@@ -151,7 +151,7 @@
                             success: function(res) {
                                 var html = '';
                                 var data = res.data;
-                                var count = 21;
+                                var count = 1;
                                 $.each(data, function(k, v) {
                                     html += '<tr>';
                                     html += '<td>' + count + '</td>';
@@ -182,6 +182,7 @@
                     searchCommentTotal();
                 }
             });
+
         });
     </script>
 @endsection

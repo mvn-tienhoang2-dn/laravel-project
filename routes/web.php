@@ -38,3 +38,11 @@ Route::group(['prefix' => '/posts'], function () {
     Route::get('/', 'PostController@index')->name('user.post.index');
     Route::get('/{id}/users', 'PostController@show')->name('user.post.show');
 });
+Route::group(['prefix' => '/list-user'], function () {
+    Route::group(['prefix' => '/sort'], function () {
+        Route::get('/name-a-z', 'UserController@sortNameAsc')->name('user.sort.nameasc');
+        Route::get('/name-z-a', 'UserController@sortNameDesc')->name('user.sort.namedesc');
+        Route::get('/age-up', 'UserController@sortAgeAsc')->name('user.sort.ageasc');
+        Route::get('/age-down', 'UserController@sortAgeDesc')->name('user.sort.agedesc');
+    });
+});
