@@ -18,8 +18,9 @@
         @yield('content')
     </div>
     <footer>
-        @include('client.shares.foot');
+        @include('client.shares.foot')
     </footer>
+    @include('client.shares.modals')
     @yield('js')
 </body>
 @include('client.shares.bottom')

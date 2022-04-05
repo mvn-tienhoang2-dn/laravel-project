@@ -21,7 +21,7 @@ class UserController extends Controller
         $data['age'] = date('Y', strtotime(now())) - date('Y', strtotime($data['birthday']));
         $data['password'] = bcrypt($data['password']);
         User::create($data);
-        return response()->json(['status' => true]);
+        return response()->json(['status' => 200]);
     }
     public function destroy($id)
     {
@@ -44,10 +44,20 @@ class UserController extends Controller
             $request->file('avatar')->move(public_path($path), $newName);
             $data['avatar'] = "$path/$newName";
         }
-        $data['age'] = date('Y', strtotime(now())) - date('Y', strtotime($data['birthday']));
-        $data['password'] = bcrypt($data['password']);
-        $user = User::find($request->id);
+        if ($request->birthday != null) {
+            $data['age'] = date('Y', strtotime(now())) - date('Y', strtotime($data['birthday']));
+        }
+        $user = User::findOrFail($id);
+        if ($user->avatar != null) {
+            $old_file_path =  '/var/www/public' . $user->avatar;
+            File::delete($old_file_path);
+        }
         $user->update($data);
-        return response()->json(['status' => true]);
+        return response()->json(['status' => 200]);
+    }
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json(['status' => true, 'data' => $user]);
     }
 }
